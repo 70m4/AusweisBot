@@ -1,0 +1,19 @@
+name: tests
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: SBT test
+        id: sbt_test
+        uses: lokkju/github-action-sbt@master
+        with:
+          commands: test
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        id: docker_build
+        uses: docker/build-push-action@v2
